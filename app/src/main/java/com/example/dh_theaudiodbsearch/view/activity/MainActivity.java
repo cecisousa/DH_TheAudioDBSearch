@@ -69,12 +69,6 @@ public class MainActivity extends AppCompatActivity implements OnClick {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
-                if (newText.length() > 3){
-                    itemBusca = newText;
-                    adapter.clear();
-                    viewModel.getAlbuns(itemBusca);
-                }
                 return false;
             }
         });
