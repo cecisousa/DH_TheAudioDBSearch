@@ -23,6 +23,7 @@ public class AlbumViewModel extends AndroidViewModel {
 
     private MutableLiveData<List<Album>> listaAlbuns = new MutableLiveData<>();
     private MutableLiveData<Boolean> loading = new MutableLiveData<>();
+    private MutableLiveData<String> albunsLiveDataError = new MutableLiveData<>();
     private CompositeDisposable disposable = new CompositeDisposable();
     private AlbumRepository repository = new AlbumRepository();
 
@@ -36,6 +37,10 @@ public class AlbumViewModel extends AndroidViewModel {
 
     public LiveData<Boolean> getLoading() {
         return this.loading;
+    }
+
+    public LiveData<String> getErrorAlbum(){
+        return this.albunsLiveDataError;
     }
 
     public void getAlbuns(String item) {
@@ -73,7 +78,7 @@ public class AlbumViewModel extends AndroidViewModel {
                         .subscribe(albumResult -> {
                             listaAlbuns.setValue(albumResult.getAlbum());
                         }, throwable -> {
-                            Log.i("LOG", "Erro" + throwable.getMessage());
+                            albunsLiveDataError.setValue(throwable.getMessage());
                         })
         );
     }

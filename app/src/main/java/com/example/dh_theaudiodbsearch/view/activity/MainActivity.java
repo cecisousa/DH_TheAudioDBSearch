@@ -1,16 +1,16 @@
 package com.example.dh_theaudiodbsearch.view.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dh_theaudiodbsearch.R;
 import com.example.dh_theaudiodbsearch.model.pojos.Album;
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements OnClick {
     private AlbumViewModel viewModel;
     private List<Album> listaAlbuns = new ArrayList<>();
     private AlbumRecyclerViewAdapter adapter;
-    private String itemBusca;
+    private String itemBusca = "Iron Maiden";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,8 @@ public class MainActivity extends AppCompatActivity implements OnClick {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
         viewModel.getAlbuns(itemBusca);
-        viewModel.getAllAlbuns("Iron Maiden");
+        viewModel.getAllAlbuns(itemBusca);
+
         viewModel.getListaAlbum().observe(this, resultadoLista -> {
             adapter.atualizaLista(resultadoLista);
         });
@@ -54,6 +55,10 @@ public class MainActivity extends AppCompatActivity implements OnClick {
             }
         });
 
+        viewModel.getErrorAlbum().observe(this, error -> {
+            Toast.makeText(this, error, Toast.LENGTH_LONG);
+        });
+
 
         //Chamada do editTextSearch
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -61,7 +66,6 @@ public class MainActivity extends AppCompatActivity implements OnClick {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 itemBusca = query;
-                //Chama o método clear do adapter para limpar a lista
                 adapter.clear();
                 viewModel.getAlbuns(itemBusca);
                 return false;
@@ -69,6 +73,11 @@ public class MainActivity extends AppCompatActivity implements OnClick {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                if (newText.length() > 3) {
+                    itemBusca = newText;
+                    adapter.clear();
+                    viewModel.getAlbuns(itemBusca);
+                }
                 return false;
             }
         });
