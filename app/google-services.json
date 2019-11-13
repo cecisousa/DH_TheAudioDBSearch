@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1015321996740",
+    "firebase_url": "https://dhtheaudiodbsearch.firebaseio.com",
+    "project_id": "dhtheaudiodbsearch",
+    "storage_bucket": "dhtheaudiodbsearch.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015321996740:android:08e5149084ec61b8eb0891",
+        "android_client_info": {
+          "package_name": "com.example.dh_theaudiodbsearch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1015321996740-bob8qa4dvulh5hov1gdednfnavgbcu7j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dh_theaudiodbsearch",
+            "certificate_hash": "6e205ec8bab6170cc3aacc71b5842a8156fc810e"
+          }
+        },
+        {
+          "client_id": "1015321996740-qk366t84c74oiscp0qsdbjtoljpfphig.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxQmjEVVX_FFS6NrKUigB2OrlTRL0uXkg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1015321996740-qk366t84c74oiscp0qsdbjtoljpfphig.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
